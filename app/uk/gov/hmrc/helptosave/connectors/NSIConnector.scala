@@ -28,6 +28,7 @@ import uk.gov.hmrc.helptosave.WSHttpProxy
 import uk.gov.hmrc.helptosave.connectors.NSIConnector.{SubmissionFailure, SubmissionResult, SubmissionSuccess}
 import uk.gov.hmrc.helptosave.models.NSIUserInfo
 import uk.gov.hmrc.helptosave.util.JsErrorOps._
+import uk.gov.hmrc.helptosave.util.SSLHandler
 import uk.gov.hmrc.play.config.ServicesConfig
 import uk.gov.hmrc.play.http._
 
@@ -64,7 +65,7 @@ class NSIConnectorImpl extends NSIConnector with ServicesConfig {
     BaseEncoding.base64().encode((userName + ":" + password).getBytes(Charsets.UTF_8))
   }
 
-  val httpProxy = new WSHttpProxy
+  val httpProxy = SSLHandler.httpClientFactory
 
   override def createAccount(userInfo: NSIUserInfo)(implicit hc: HeaderCarrier, ex: ExecutionContext): Future[SubmissionResult] = {
     Logger.debug(s"We are trying to create a account for ${userInfo.NINO}")
