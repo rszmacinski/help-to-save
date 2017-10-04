@@ -17,6 +17,7 @@
 package uk.gov.hmrc.helptosave.config
 
 import com.google.inject.{ImplementedBy, Inject, Singleton}
+import play.api.libs.Crypto
 import play.api.libs.json.Writes
 import uk.gov.hmrc.auth.core.PlayAuthConnector
 import uk.gov.hmrc.http.hooks.HttpHook
@@ -34,7 +35,6 @@ import scala.concurrent.{ExecutionContext, Future}
 object HtsAuditConnector extends AuditConnector with AppName {
   override lazy val auditingConfig: AuditingConfig = LoadAuditingConfig("auditing")
 }
-
 @Singleton
 class HtsAuthConnector @Inject() (wsHttp: WSHttp) extends PlayAuthConnector with ServicesConfig {
   override lazy val serviceUrl: String = baseUrl("auth")

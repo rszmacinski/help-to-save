@@ -18,7 +18,7 @@ package uk.gov.hmrc.helptosave.util
 
 import com.google.inject.{ImplementedBy, Inject, Singleton}
 import play.api.Configuration
-import uk.gov.hmrc.crypto._
+import play.api.libs.crypto
 
 import scala.util.Try
 
